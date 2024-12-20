@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Question_3.MainPage"
+             Title="Post List">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Header with Add Button -->
+        <StackLayout Orientation="Horizontal" BackgroundColor="LightBlue" Padding="10">
+            <Label Text="Post List" FontSize="24" FontAttributes="Bold" VerticalOptions="Center" />
+            <Button Text="ADD"
+                    HorizontalOptions="EndAndExpand"
+                    Command="{Binding NavigateToAddCommand}" />
+        </StackLayout>
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="15">
+                <!-- CollectionView 显示 Posts -->
+                <CollectionView ItemsSource="{Binding Posts}" Margin="10" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Black" CornerRadius="10" Padding="10" Margin="5" HasShadow="True">
+                                <StackLayout>
+                                    <!-- 标题 -->
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" LineBreakMode="TailTruncation" />
+
+                                    <!-- 内容 -->
+                                    <Label Text="{Binding Body}" FontSize="14" LineBreakMode="WordWrap" />
+
+                                    <!-- 删除按钮 -->
+                                    <Button Text="Delete" Command="{Binding BindingContext.DeletePostCommand, Source={x:Reference Name=MainPage}}" CommandParameter="{Binding .}" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- 加载按钮 -->
+                <Button Text="Load Posts" Command="{Binding LoadPostsCommand}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

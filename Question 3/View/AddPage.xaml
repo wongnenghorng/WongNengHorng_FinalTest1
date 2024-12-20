@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Question_3.AddPage"
+             Title="Add Post">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <!-- 输入标题 -->
+        <Entry Placeholder="Title" 
+               Text="{Binding Title}" 
+               FontSize="16" />
+
+        <!-- 输入正文 -->
+        <Editor Placeholder="Body" 
+                Text="{Binding Body}" 
+                AutoSize="TextChanges" 
+                FontSize="14" 
+                HeightRequest="120" />
+
+        <!-- 保存按钮 -->
+        <Button Text="SAVE" 
+                Command="{Binding AddPostCommand}" 
+                BackgroundColor="LightBlue" 
+                TextColor="White" 
+                FontAttributes="Bold" 
+                HorizontalOptions="Fill" />
+    </VerticalStackLayout>
+</ContentPage>
